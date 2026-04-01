@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="border-b">
+    <header className="border-b sticky top-0 z-50 bg-white">
       <div className="max-w-[1280px] mx-auto flex h-16 items-center justify-between px-6">
 
         {/* Logo */}
