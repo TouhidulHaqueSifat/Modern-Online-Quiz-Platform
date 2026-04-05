@@ -4,7 +4,7 @@ import { Link } from "react-router";
 export default function Header() {
   const [open, setOpen] = useState(false);
   return (
-    <header className="border-b sticky top-0 z-50 bg-white">
+    <header className="border-b ">
       <div className="max-w-[1280px] mx-auto flex h-16 items-center justify-between px-6">
 
         {/* Logo */}
@@ -26,7 +26,7 @@ export default function Header() {
         <div className="hidden md:flex gap-4 items-center">
           <Link to="/login" className="hover:text-indigo-600">Login</Link>
           <Link
-            to="/"
+            to="/get-quiz"
             className="bg-indigo-600 text-white px-4 py-2 rounded-[50px]"
           >
             Get Started
@@ -50,9 +50,10 @@ export default function Header() {
           <Link to="/">About</Link>
           <Link to="/login">Login</Link>
           <Link
-            to="/"
+            to="/get-quiz"
             className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
           >
+            console.log("Get Started")
             Get Started
           </Link>
         </div>
