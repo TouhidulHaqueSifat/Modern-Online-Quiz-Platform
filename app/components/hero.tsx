@@ -15,6 +15,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import MockQuizCard from "./mockQuizCard";
+import { Link } from "react-router";
 
 export default function Hero() {
   return (
@@ -66,10 +67,10 @@ export default function Hero() {
               transition={{ duration: 0.6, delay: 0.3 }}
               className="flex items-center gap-4"
             >
-              <button className="relative group flex items-center gap-2 bg-gradient-to-r from-[#3525CD] to-indigo-500 text-white font-bold text-lg px-10 py-5 rounded-full shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all duration-300 hover:-translate-y-0.5">
+              <Link to="/get-quiz" className="relative group flex items-center gap-2 bg-gradient-to-r from-[#3525CD] to-indigo-500 text-white font-bold text-lg px-10 py-5 rounded-full shadow-xl shadow-indigo-500/30 hover:shadow-indigo-500/50 transition-all duration-300 hover:-translate-y-0.5">
                 Start Free Quiz
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-              </button>
+              </Link>
               <button className="flex items-center gap-3 text-black font-bold text-lg px-8 py-5 rounded-full bg-[#E1E2E4] hover:bg-white/15 border border-white/10 transition-all">
                 <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
                   <Play size={12} className="text-black ml-0.5" fill="white" />

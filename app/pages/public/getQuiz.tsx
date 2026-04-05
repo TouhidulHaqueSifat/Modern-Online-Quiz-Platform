@@ -12,6 +12,7 @@ import {
   ArrowRight,
   Plus,
 } from "lucide-react";
+import FilterTabs from '~/components/allQuiz/filterTab';
  
 // ─────────────────────────────────────────────
 // 1. QUIZ DATA
@@ -92,7 +93,7 @@ const GetQuiz = () => {
           </h2>
  
           {/* Filter tabs */}
-          {/*<FilterTabs active={activeFilter} onChange={setActiveFilter} />*/}
+          <FilterTabs active={activeFilter} onChange={setActiveFilter} />
         </div>
  
         {/* ── Quiz Grid ── */}
