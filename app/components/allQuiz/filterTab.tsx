@@ -1,9 +1,7 @@
 import React from 'react'
+import type { FilterTabsProps } from '~/types/quiz';
 
-interface FilterTabsProps {
-  active: string;
-  onChange: (filter: string) => void;
-}
+
 const FILTER_TABS = ["All", "Cognitive", "Technical"];
 
 const FilterTabs = ({ active, onChange }: FilterTabsProps) => {
