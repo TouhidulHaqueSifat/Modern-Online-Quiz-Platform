@@ -131,7 +131,7 @@ export default function QuizCard({ quiz }: QuizCardProps) {
       </div>
  
       {/* ── Start Quiz Button ── */}
-      <button className="w-full h-14 rounded-full bg-[#E1E2E4] hover:bg-[#d0d1d3] transition-colors flex items-center justify-center gap-2 font-bold text-base text-[#191C1E]">
+      <button className="w-full h-14 rounded-full bg-[#E1E2E4] hover:bg-[#d0d1d3] transition-colors flex items-center justify-center gap-2 font-bold text-base text-[#191C1E] cursor-pointer">
         Start Quiz
         <ArrowRight size={15} />
       </button>
