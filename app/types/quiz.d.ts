@@ -30,7 +30,7 @@ export interface Question {
 }
 
 export interface Quiz {
-  id: string;
+  id: number;
   title: string;
   category: string;
   totalTime: number;      // in seconds
