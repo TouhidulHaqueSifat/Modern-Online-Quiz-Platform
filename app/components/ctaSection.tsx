@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
+import { Link } from "react-router";
 
 export default function CTASection() {
   return (
@@ -48,9 +49,10 @@ export default function CTASection() {
             transition={{ delay: 0.35 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <button className="bg-white text-indigo-700 font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-black/20 transition-all duration-300 hover:-translate-y-0.5">
+            <Link to="/get-quiz" className="bg-white text-indigo-700 font-bold text-lg px-12 py-5 rounded-full hover:shadow-2xl hover:shadow-black/20 transition-all duration-300 hover:-translate-y-0.5 cursor-pointer">
+
               Get Started for Free
-            </button>
+            </Link>
             <button className="border-2 border-violet-200 text-violet-200 font-bold text-lg px-12 py-5 rounded-full hover:bg-white/10 transition-all duration-300">
               Enterprise Access
             </button>
