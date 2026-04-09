@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useParams } from 'react-router';
 import ProgressBar from '~/components/allQuiz/progressBar';
 import progressBar from '~/components/allQuiz/progressBar'
 import type { Quiz } from '~/types/quiz';
@@ -163,7 +164,12 @@ const QUIZ_DATA: Quiz[] = [
     },
 ];
 const quiz = () => {
-    const [quiz, setQuiz] = useState(QUIZ_DATA[0]);
+    const { id } = useParams();
+
+    const quiz = QUIZ_DATA.find(q => q.id === Number(id));
+    if(!quiz) {
+        return <div className="min-h-screen w-full flex items-center justify-center text-2xl font-bold text-gray-500">Quiz not found</div>
+    }
     return (
         <div className="min-h-screen w-full bg-[#F3F4F6]">
             <div className="w-full max-w-[1024px] mx-auto px-4 sm:px-6 pt-32 pb-20 flex flex-col gap-12">
