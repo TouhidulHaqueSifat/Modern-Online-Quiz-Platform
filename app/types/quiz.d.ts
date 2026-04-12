@@ -36,3 +36,15 @@ export interface Quiz {
   totalTime: number;      // in seconds
   questions: Question[];
 }
+
+export interface QuestionCardProps {
+  question: Question;
+  selectedOption: number | null;
+  onSelect: (questionId: string, optionIndex: number) => void;
+}
+
+export interface OptionButtonProps {
+  label: string;
+  selectedOption: boolean;
+  onClick: () => void;
+}

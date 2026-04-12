@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { useParams } from 'react-router';
+import { NavigationBar } from '~/components/allQuiz/NavigationBar';
 import ProgressBar from '~/components/allQuiz/progressBar';
 import progressBar from '~/components/allQuiz/progressBar'
+import QuestionCard from '~/components/allQuiz/questionCard';
 import type { Quiz } from '~/types/quiz';
 
 const QUIZ_DATA: Quiz[] = [
@@ -158,22 +160,65 @@ const QUIZ_DATA: Quiz[] = [
                 tag: "Algorithms",
                 text: "What is the time complexity of binary search?",
                 options: ["O(n)", "O(log n)", "O(n log n)", "O(1)"],
-                correctOption: 1,
+                correctOption: 2,
             },
         ],
     },
 ];
 const quiz = () => {
     const { id } = useParams();
+    const [answers, setAnswers] = useState<(number | null)[]>([]);
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
 
     const quiz = QUIZ_DATA.find(q => q.id === Number(id));
-    if(!quiz) {
+    if (!quiz) {
         return <div className="min-h-screen w-full flex items-center justify-center text-2xl font-bold text-gray-500">Quiz not found</div>
     }
+
+    // Initialize answers array if not done
+    if (answers.length === 0) {
+        setAnswers(new Array(quiz.questions.length).fill(null));
+    }
+
+    const handleSelect = (questionId: string, optionIndex: number) => {
+        setAnswers(prev => {
+            const newAnswers = [...prev];
+            newAnswers[currentIndex] = optionIndex;
+            return newAnswers;
+        });
+    };
+
+    const handleSubmit = () => {
+        // Calculate score
+        let score = 0;
+        answers.forEach((answer, index) => {
+            if (answer === quiz.questions[index].correctOption) {
+                score++;
+            }
+        });
+        alert(`Quiz completed! Your score: ${score}/${quiz.questions.length}`);
+        // You can navigate to results page or show modal here
+    };
+
+// ── NAVIGATION ─────────────────────────────
+    const total: number = quiz.questions.length;
+    const goNext = (): void => {
+        if (currentIndex < total - 1) setCurrentIndex((i) => i + 1);
+        else handleSubmit();
+    };
+    const goPrev = (): void => {
+        if (currentIndex > 0) setCurrentIndex((i) => i - 1);
+    };
+    const goSkip = (): void => goNext();
+    const goJump = (index: number): void => setCurrentIndex(index);
+
     return (
         <div className="min-h-screen w-full bg-[#F3F4F6]">
             <div className="w-full max-w-[1024px] mx-auto px-4 sm:px-6 pt-32 pb-20 flex flex-col gap-12">
-                <ProgressBar quiz={quiz} currentIndex={0} timeLeft={600} />
+                <ProgressBar quiz={quiz} currentIndex={currentIndex} timeLeft={600} />
+                <QuestionCard question={quiz.questions[currentIndex]} selectedOption={answers[currentIndex]} onSelect={handleSelect} />
+                <NavigationBar currentIndex={currentIndex} total={total} onPrev={goPrev} onSkip={goSkip} onNext={goNext}
+                />
             </div>
 
         </div>
