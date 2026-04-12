@@ -53,7 +53,7 @@ export default function Header() {
             to="/get-quiz"
             className="bg-indigo-600 text-white px-4 py-2 rounded-lg"
           >
-            console.log("Get Started")
+           
             Get Started
           </Link>
         </div>
