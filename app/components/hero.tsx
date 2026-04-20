@@ -80,13 +80,7 @@ export default function Hero() {
                 Start Free Quiz
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Link>
-              <button className="flex items-center gap-3 text-black font-bold text-sm sm:text-base md:text-lg
-              px-5 py-3 sm:px-6 sm:py-3 md:px-10 md:py-5 rounded-full bg-[#E1E2E4] hover:bg-white/15 border border-white/10 transition-all">
-                <div className="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
-                  <Play size={12} className="text-black ml-0.5" fill="white" />
-                </div>
-                Watch Demo
-              </button>
+              
             </motion.div>
           </div>
 

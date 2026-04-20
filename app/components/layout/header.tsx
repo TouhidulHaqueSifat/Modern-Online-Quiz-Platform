@@ -16,15 +16,15 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-6">
+        {/*<nav className="hidden md:flex gap-6">
           <Link to="/" className="hover:text-indigo-600">Feature</Link>
           <Link to="/" className="hover:text-indigo-600">Pricing</Link>
           <Link to="/" className="hover:text-indigo-600">About</Link>
-        </nav>
+        </nav>*/}
 
         {/* Desktop Buttons */}
         <div className="hidden md:flex gap-4 items-center">
-          <Link to="/login" className="hover:text-indigo-600">Login</Link>
+          
           <Link
             to="/get-quiz"
             className="bg-indigo-600 text-white px-4 py-2 rounded-[50px]"
