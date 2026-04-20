@@ -1,87 +1,77 @@
-# Welcome to React 19!
+# CognitiveFlow — Online Quiz Platform
 
-A modern, production-ready template for building full-stack React applications using React Router.
+A modern quiz application built with React, TypeScript, Vite, React Router v7, Tailwind CSS, and Redux Toolkit.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+The app includes a landing page, quiz discovery experience, category filtering, an interactive quiz player, and a polished authentication UI.
 
 ## Features
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+- Landing page with hero section, feature highlights, and call-to-action.
+- Quiz catalog with category filters and responsive card layout.
+- Interactive quiz player with question navigation, progress bar, and scoring.
+- Modular React Router route configuration for public and auth sections.
+- Redux Toolkit store setup for application state management.
+- Custom reusable UI components built with Tailwind CSS.
+
+## Tech Stack
+
+- React 19
+- TypeScript
+- Vite
+- React Router v7
+- Redux Toolkit
+- Tailwind CSS v4
+- Axios
+- Motion One
+- Lucide React icons
+- Zod / React Hook Form (validation-ready dependencies)
 
 ## Getting Started
 
-### Installation
-
-Install the dependencies:
+### Install dependencies
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
+### Run the development server
 
 ```bash
 npm run dev
 ```
 
-Your application will be available at `http://localhost:5173`.
+Open the local URL shown in the terminal to view the app.
 
-## Building for Production
-
-Create a production build:
+### Build for production
 
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+### Serve the production build
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+npm run start
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### Type check
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```bash
+npm run typecheck
 ```
 
-## Styling
+## Project Structure
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+- `app/` - main application source
+  - `components/` - UI components, layout, quiz cards, and form elements
+  - `pages/` - page routes, including home, quiz discovery, quiz player, and auth page
+  - `routes/` - React Router route definitions for public and auth sections
+  - `redux/` - Redux store, slices, and hooks
+  - `services/` - HTTP service wrapper and API helpers
+  - `styles/` - global CSS styles
+  - `types/` - shared TypeScript types
 
----
+## Notes
 
-Built with ❤️ using React Router.
+- Quiz data is currently seeded locally in the app pages.
+- The application is ready for enhancements such as API-backed quiz content, authentication, and result tracking.
