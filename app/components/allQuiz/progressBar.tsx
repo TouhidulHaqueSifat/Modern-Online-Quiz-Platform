@@ -19,7 +19,7 @@ interface ProgressHeaderProps {
 const ProgressBar = ({ quiz, currentIndex, timeLeft }: ProgressHeaderProps) => {
     const total: number = quiz.questions.length;
     const progressPercent: number = (currentIndex / total) * 100;
-    const isUrgent: boolean = timeLeft < 300; // under 5 minutes
+    const isUrgent: boolean = timeLeft < quiz.questions.length * 30; // under 5 minutes
     return (
     <div className="flex flex-col gap-6 w-full">
       {/* Title row */}

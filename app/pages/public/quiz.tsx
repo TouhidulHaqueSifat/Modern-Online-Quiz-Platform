@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router';
 import { NavigationBar } from '~/components/allQuiz/NavigationBar';
 import ProgressBar from '~/components/allQuiz/progressBar';
@@ -11,7 +11,7 @@ const QUIZ_DATA: Quiz[] = [
         id: 1,
         title: "Advanced Cognitive Patterns",
         category: "Assessment in Progress",
-        totalTime: 25 * 60,
+        totalTime: 0,
         questions: [
             {
                 id: "q1",
@@ -144,7 +144,7 @@ const QUIZ_DATA: Quiz[] = [
         id: 2,
         title: "Computer Science Fundamentals",
         category: "Programming",
-        totalTime: 20 * 60,
+        totalTime: 0,
         questions: [
             {
                 id: "q1",
@@ -163,17 +163,48 @@ const QUIZ_DATA: Quiz[] = [
                 correctOption: 2,
             },
         ],
+        
     },
 ];
 const quiz = () => {
     const { id } = useParams();
-    const [answers, setAnswers] = useState<(number | null)[]>([]);
-    const [currentIndex, setCurrentIndex] = useState<number>(0);
-
     const quiz = QUIZ_DATA.find(q => q.id === Number(id));
+
     if (!quiz) {
         return <div className="min-h-screen w-full flex items-center justify-center text-2xl font-bold text-gray-500">Quiz not found</div>
     }
+    quiz.totalTime = quiz.questions.length * 60; // Set total time for testing purposes
+
+    const [answers, setAnswers] = useState<(number | null)[]>([]);
+    const [currentIndex, setCurrentIndex] = useState<number>(0);
+    const [timeLeft, setTimeLeft] = useState<number>(quiz.totalTime);
+    const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
+    const [submitResult, setSubmitResult] = useState<SubmitResult | null>(null);
+
+    // ── TIMER ──────────────────────────────────
+    useEffect(() => {
+        if (isSubmitted) return;
+
+        const interval = setInterval(() => {
+            setTimeLeft((prev: number) => {
+                if (prev <= 1) {
+                    clearInterval(interval);
+                    return 0;
+                }
+                return prev - 1;
+            });
+        }, 1000);
+
+        return () => clearInterval(interval);
+    }, [isSubmitted]);
+
+    // Auto-submit when timer hits 0
+    useEffect(() => {
+        if (timeLeft === 0 && !isSubmitted) {
+            handleSubmit();
+        }
+    }, [timeLeft]);
+
 
     // Initialize answers array if not done
     if (answers.length === 0) {
@@ -200,7 +231,7 @@ const quiz = () => {
         // You can navigate to results page or show modal here
     };
 
-// ── NAVIGATION ─────────────────────────────
+    // ── NAVIGATION ─────────────────────────────
     const total: number = quiz.questions.length;
     const goNext = (): void => {
         if (currentIndex < total - 1) setCurrentIndex((i) => i + 1);
@@ -215,7 +246,7 @@ const quiz = () => {
     return (
         <div className="min-h-screen w-full bg-[#F3F4F6]">
             <div className="w-full max-w-[1024px] mx-auto px-4 sm:px-6 pt-32 pb-20 flex flex-col gap-12">
-                <ProgressBar quiz={quiz} currentIndex={currentIndex} timeLeft={600} />
+                <ProgressBar quiz={quiz} currentIndex={currentIndex} timeLeft={timeLeft} />
                 <QuestionCard question={quiz.questions[currentIndex]} selectedOption={answers[currentIndex]} onSelect={handleSelect} />
                 <NavigationBar currentIndex={currentIndex} total={total} onPrev={goPrev} onSkip={goSkip} onNext={goNext}
                 />
